@@ -124,6 +124,8 @@ $ script/server
 
 For production, you should just use `npm run start`.
 
+Note: The free version of ngrok does not support subdomains. You will need to clear the value of `TUNNEL_SUBDOMAIN` and comment out the logic in the `script/tunnel` file that checks if `TUNNEL_SUBDOMAIN` is set. `script/server` will also spin up it's own ngrok url, so you will need to use the logged url to configure your github application. Look for a log in your terminal with a message of "started tunnel". It'll have a `url` property containing the ngrok generated url. 
+
 
 ## Configuring the Jira instance
 
