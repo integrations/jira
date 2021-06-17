@@ -17,6 +17,7 @@
     "@atlaskit/css-reset": "^2.0.5",
     "@atlaskit/reduced-ui-pack": "^8.19.0",
     "@octokit/auth-app": "^2.6.0",
+    "@octokit/webhooks": "^7.24.3",
     "@sentry/integrations": "^5.15.5",
     "@sentry/node": "^5.15.5",
     "atlassian-jwt": "^0.1.5",
