@@ -53,7 +53,7 @@ describe('Frontend', () => {
   beforeEach(() => {
     models = td.replace('../../../lib/models');
 
-    subject = require('../../../lib/frontend/app')(app.app);
+    subject = require('../../../lib/frontend/app')(app);
   });
   afterEach(() => {
     td.reset();

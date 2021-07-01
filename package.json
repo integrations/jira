@@ -42,7 +42,7 @@
     "newrelic": "^6.2.0",
     "pg": "^7.4.3",
     "primer": "^10.6.0",
-    "probot": "^9.11.3",
+    "probot": "^12.0.0",
     "rate-limit-redis": "^1.7.0",
     "request": "^2.88.0",
     "sequelize": "^5.21.7",

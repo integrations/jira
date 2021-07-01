@@ -2,6 +2,7 @@
 // are already set in the environment.
 const defaults = Object.assign({
   NODE_ENV: 'test',
+  APP_ID: 12257,
   APP_URL: 'https://test-github-app-instance.com',
   ATLASSIAN_URL: 'https://test-atlassian-instance.net',
   HYDRO_BASE_URL: 'https://hydro-base-url.com/api/v1/events',

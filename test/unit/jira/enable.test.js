@@ -31,7 +31,7 @@ describe('Webhook: /events/enabled', () => {
 
   test('Pending Installation', async () => {
     testTracking();
-    const req = { log: jest.fn(), body: { baseUrl: installation.jiraHost } };
+    const req = { log: { info: jest.fn() }, body: { baseUrl: installation.jiraHost } };
     const res = { sendStatus: jest.fn(), on: jest.fn() };
     await enable(req, res);
     expect(res.on).toHaveBeenCalledWith('finish', expect.any(Function));
@@ -40,7 +40,7 @@ describe('Webhook: /events/enabled', () => {
 
   test('No Pending Installation', async () => {
     installation = null;
-    const req = { log: jest.fn(), body: { baseUrl: 'https://no-exist.jira.com' } };
+    const req = { log: { info: jest.fn() }, body: { baseUrl: 'https://no-exist.jira.com' } };
     const res = { sendStatus: jest.fn(), on: jest.fn() };
     await enable(req, res);
     expect(res.sendStatus).toHaveBeenCalledWith(422);

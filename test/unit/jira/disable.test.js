@@ -17,7 +17,7 @@ describe('Webhook: /events/disabled', () => {
       disable: jest.fn().mockResolvedValue(installation),
       subscriptions: jest.fn().mockResolvedValue([{ gitHubInstallationId: 10 }]),
     };
-    const req = { log: jest.fn() };
+    const req = { log: { info: jest.fn() } };
     const res = { locals: { installation }, sendStatus: jest.fn() };
     await disable(req, res);
     expect(res.sendStatus).toHaveBeenCalledWith(204);

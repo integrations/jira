@@ -1,5 +1,7 @@
-const { logger } = require('probot/lib/logger');
+const { getLog } = require('../../../lib/config/logger');
 const { GitHubAPI } = require('../../../lib/config/github-api');
+const { Probot } = require('probot');
+const { getPrivateKey } = require('@probot/get-private-key');
 
 const { Installation, Subscription } = require('../../../lib/models');
 const middleware = require('../../../lib/github/middleware');
@@ -10,6 +12,12 @@ describe('Probot event middleware', () => {
     let handlerCalls;
 
     beforeEach(async () => {
+      let logger = getLog();
+      const probot = new Probot({
+        appId: 12257,
+        privateKey: getPrivateKey(),
+        secret: 'development',
+      });
       context = {
         payload: {
           sender: { type: 'not bot' },
@@ -17,6 +25,7 @@ describe('Probot event middleware', () => {
         },
         github: GitHubAPI(),
         log: logger,
+        octokit: probot.state.octokit,
       };
 
       Installation.getForHost = jest.fn((jiraHost) => {

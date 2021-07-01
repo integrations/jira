@@ -39,7 +39,7 @@ describe('Webhook: /events/uninstalled', () => {
 
   test('Existing Installation', async () => {
     testTracking();
-    const req = { log: jest.fn() };
+    const req = { log: { info: jest.fn() } };
     const res = { locals: { installation }, sendStatus: jest.fn() };
     await uninstall(req, res);
     expect(res.sendStatus).toHaveBeenCalledWith(204);
@@ -49,7 +49,7 @@ describe('Webhook: /events/uninstalled', () => {
 
   test('Existing Installation, no Subscriptions', async () => {
     testTracking();
-    const req = { log: jest.fn() };
+    const req = { log: { info: jest.fn() } };
     const res = { locals: { installation }, sendStatus: jest.fn() };
     subscriptions = [];
     await uninstall(req, res);

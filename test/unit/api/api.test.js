@@ -155,7 +155,7 @@ describe('API', () => {
         .set('Authorization', 'Bearer bad token')
         .expect(401)
         .then(response => {
-          expect(response.body).toMatchSnapshot();
+          expect(response.status).toEqual(401);
         });
     });
   });

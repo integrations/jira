@@ -9,7 +9,7 @@ describe('GitHub Actions', () => {
       const ref = 'TES-123-test-ref';
       const sha = 'test-branch-ref-sha';
 
-      td.when(githubApi.get(`/repos/test-repo-owner/test-repo-name/git/refs/heads/${ref}`))
+      td.when(githubApi.get(`/repos/test-repo-owner/test-repo-name/git/ref/heads%2F${ref}`))
         .thenReturn({
           ref: 'refs/heads/test-ref',
           object: {

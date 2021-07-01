@@ -49,13 +49,6 @@ Object {
 }
 `;
 
-exports[`API Authentication should return 401 if the token is invalid 1`] = `
-Object {
-  "documentation_url": "https://developer.github.com/v4",
-  "message": "Bad credentials",
-}
-`;
-
 exports[`API Authentication should return 404 if no token is provided 1`] = `Object {}`;
 
 exports[`API Endpoints installation should return 404 if no installation is found 1`] = `Object {}`;
