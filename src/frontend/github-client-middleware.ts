@@ -21,7 +21,6 @@ export default (octokitApp: App): RequestHandler => (req: Request, res: Response
   next();
 };
 
-
 // TODO: change function name as we're not looking for admin, but those that can install app in orga
 export const isAdmin = (githubClient: GitHubAPI) =>
   async (args: { org: string, username: string, type: string }): Promise<boolean> => {
@@ -40,7 +39,9 @@ export const isAdmin = (githubClient: GitHubAPI) =>
       } = await githubClient.orgs.getMembership({ org, username });
       return role === "admin";
     } catch (err) {
-      logger.error(`${org} has not accepted new permission for getOrgMembership - error: ${err}`);
+      logger.error(`${org} has not accepted new permission for getOrgMembership or has not entered the required IP addresses into the IP allow list - error: ${err}`);
       return false;
     }
   };
+
+

@@ -30,7 +30,7 @@
             <button class="install-link btn btn-info float-right" data-installation-id="{{ id }}" type="submit">Install</button>
             <a href="/github/subscriptions/{{ id }}" class="float-right my-1 px-1">Manage</a>
           {{else}}
-            <button disabled class="tooltipped tooltipped-w install-link btn btn-info float-right" aria-label="Unable to connect this installation. Admin access is required." data-installation-id="{{ id }}" type="submit">
+            <button disabled class="tooltipped tooltipped-w install-link btn btn-info float-right" aria-label="Unable to connect this installation. Please check that you have admin access and, if you have configured an IP allowlist for your GitHub organization, that it contains the required IP addresses." data-installation-id="{{ id }}" type="submit">
               Install
             </button>
           {{/if}}
