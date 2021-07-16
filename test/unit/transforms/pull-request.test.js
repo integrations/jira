@@ -22,7 +22,7 @@ describe('pull_request transform', () => {
 
     Date.now = jest.fn(() => 12345678);
 
-    const { data } = await transformPullRequest(payload, payload.pull_request.user);
+    const { data } = await transformPullRequest(payload, payload.pull_request.user, payload.pull_request.reviewers, []);
     expect(data).toMatchObject({
       id: 1234568,
       name: 'test-owner/test-repo',
@@ -75,7 +75,7 @@ describe('pull_request transform', () => {
 
     Date.now = jest.fn(() => 12345678);
 
-    const { data } = await transformPullRequest(payload, payload.pull_request.user, payload.pull_request.reviewers);
+    const { data } = await transformPullRequest(payload, payload.pull_request.user, payload.pull_request.reviewers, []);
     expect(data).toMatchObject({
       id: 1234568,
       name: 'test-owner/test-repo',
@@ -130,6 +130,38 @@ describe('pull_request transform', () => {
       ],
       url: 'https://github.com/test-owner/test-repo',
       updateSequenceId: 12345678,
+    });
+  });
+
+  it('should include messages from commits in the pull request', async () => {
+    const pullRequestList = JSON.parse(JSON.stringify(require('../../fixtures/api/transform-pull-request-list.json')));
+    const commitList = JSON.parse(JSON.stringify(require('../../fixtures/api/transform-pull-request-commits.json')));
+    pullRequestList[1].title = '[TES-123] Branch payload Test';
+    const payload = {
+      pull_request: pullRequestList[1],
+      repository: {
+        id: 1234568,
+        name: 'test-repo',
+        full_name: 'test-owner/test-repo',
+        owner: { login: 'test-login' },
+        html_url: 'https://github.com/test-owner/test-repo',
+      },
+      author: {
+        avatar: 'https://avatars0.githubusercontent.com/u/173?v=4',
+        name: 'bkeepers',
+        url: 'https://api.github.com/users/bkeepers',
+      },
+    };
+
+    Date.now = jest.fn(() => 12345678);
+
+    const { data } = await transformPullRequest(payload, payload.pull_request.user, payload.pull_request.reviewers, commitList);
+    expect(data).toMatchObject({
+      pullRequests: [
+        {
+          issueKeys: ['TES-123', 'TES-456'],
+        },
+      ],
     });
   });
 });

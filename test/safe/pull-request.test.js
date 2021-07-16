@@ -12,6 +12,8 @@ describe('GitHub Actions', () => {
         html_url: 'test-pull-request-author-url',
       });
 
+      td.when(githubApi.get('/repos/example/test-repo-name/pulls/1/commits')).thenReturn([]);
+
       td.when(jiraApi.get('/rest/api/latest/issue/TEST-123?fields=summary'))
         .thenReturn({
           key: 'TEST-123',
@@ -103,6 +105,8 @@ describe('GitHub Actions', () => {
         html_url: 'test-pull-request-author-url',
       });
 
+      td.when(githubApi.get('/repos/example/test-repo-name/pulls/test-pull-request-number/commits')).thenReturn([]);
+
       Date.now = jest.fn(() => 12345678);
 
       // should not throw
@@ -120,6 +124,8 @@ describe('GitHub Actions', () => {
         avatar_url: 'test-pull-request-author-avatar',
         html_url: 'test-pull-request-author-url',
       });
+
+      td.when(githubApi.get('/repos/example/test-repo-name/pulls/1/commits')).thenReturn([]);
 
       Date.now = jest.fn(() => 12345678);
 
@@ -139,6 +145,8 @@ describe('GitHub Actions', () => {
         avatar_url: 'test-pull-request-author-avatar',
         html_url: 'test-pull-request-author-url',
       });
+
+      td.when(githubApi.get('/repos/example/test-repo-name/pulls/1/commits')).thenReturn([]);
 
       Date.now = jest.fn(() => 12345678);
 
